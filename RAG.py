@@ -1,7 +1,7 @@
 import os
 import torch
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from LLMProvider import get_llm
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -43,12 +43,7 @@ def ask_RAG(vectorstore, question):
         for doc in documents
     )
 
-    llm = ChatOpenAI(
-        model=os.getenv("OPENROUTER_MODEL"),
-        api_key=os.getenv("OPENROUTER_API_KEY"),
-        base_url="https://openrouter.ai/api/v1",
-        temperature=0
-    )
+    llm = get_llm()
 
     prompt = f"""
 You are a precise question-answering assistant.

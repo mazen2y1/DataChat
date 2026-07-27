@@ -2,21 +2,13 @@ import os
 import json
 import logging
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from LLMProvider import get_llm
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-def get_llm():
-
-    return ChatOpenAI(
-        model=os.getenv("OPENROUTER_MODEL"),
-        api_key=os.getenv("OPENROUTER_API_KEY"),
-        base_url="https://openrouter.ai/api/v1",
-        temperature=0
-    )
+llm = get_llm()
 
 def route_question(question, available_sources):
     available_sources = [s.upper() for s in available_sources]

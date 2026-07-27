@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from LLMProvider import get_llm
 from langchain_community.utilities import SQLDatabase
 from langchain_community.agent_toolkits import create_sql_agent
 load_dotenv()
@@ -10,12 +10,7 @@ def create_database_agent(database_path):
         f"sqlite:///{database_path}"
     )
 
-    llm = ChatOpenAI(
-        model=os.getenv("OPENROUTER_MODEL"),
-        api_key=os.getenv("OPENROUTER_API_KEY"),
-        base_url="https://openrouter.ai/api/v1",
-        temperature=0
-    )
+    llm = get_llm()
 
     agent = create_sql_agent(
     llm=llm,

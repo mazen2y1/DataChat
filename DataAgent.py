@@ -1,17 +1,12 @@
 import os
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from LLMProvider import get_llm
 from langchain_experimental.agents import create_pandas_dataframe_agent
 
 load_dotenv()
 
 def create_data_agent(dataframe):
-    llm = ChatOpenAI(
-        model=os.getenv("OPENROUTER_MODEL"),
-        api_key=os.getenv("OPENROUTER_API_KEY"),
-        base_url="https://openrouter.ai/api/v1",
-        temperature=0
-    )
+    llm = get_llm()
 
     agent = create_pandas_dataframe_agent(
         llm,
