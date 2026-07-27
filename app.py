@@ -8,10 +8,10 @@ from SQLAgent import create_database_agent, ask_database
 import query_router
 
 st.set_page_config(
-    page_title="Chat With Data",
+    page_title="Data Chat",
     page_icon="📊"
 )
-st.title("📊 Chat With Data")
+st.title("📊 Data Chat")
 st.write(
     "Upload your data and ask questions "
     "across multiple data sources."
