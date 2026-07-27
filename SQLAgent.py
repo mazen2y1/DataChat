@@ -34,8 +34,6 @@ def ask_database(agent, question):
         return output
 
     except Exception as e:
-        print(f"SQL Agent Error: {e}")
-        return (
-            "I could not find the requested"
-            "information in the database"
-        )
+        import traceback
+        traceback.print_exc()
+        raise
