@@ -17,3 +17,4 @@ openpyxl
 tabulate
 torch
 torchvision
+langchain_google_genai
