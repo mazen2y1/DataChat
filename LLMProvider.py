@@ -34,12 +34,15 @@ def get_text(response):
     if isinstance(content, list):
         text = []
         for part in content:
-            if hasattr(part, "text"):
+            if isinstance(part, dict):
+                if "text" in part:
+                    text.append(part["text"])
+
+            elif hasattr(part, "text"):
                 text.append(part.text)
-            elif isinstance(part, dict) and "text" in part:
-                text.append(part["text"])
+
             else:
                 text.append(str(part))
-        return "".join(text).strip()
 
+        return "".join(text).strip()
     return str(content).strip()
