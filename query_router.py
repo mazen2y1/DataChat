@@ -90,7 +90,17 @@ User Question:
 Output:
 """
     response = llm.invoke(prompt)
-    raw_response = response.content.strip()
+
+    if isinstance(response.content, list):
+        raw_response = ""
+        for part in response.content:
+            if hasattr(part, "text"):
+                raw_response += part.text
+            else:
+                raw_response += str(part)
+        raw_response = raw_response.strip()
+    else:
+        raw_response = str(response.content).strip()
     raw_response = raw_response.replace(
         "```json",
         ""
@@ -179,4 +189,14 @@ Rules:
 Final Answer:
 """
     response = llm.invoke(prompt)
-    return response.content
+
+    if isinstance(response.content, list):
+        answer = ""
+        for part in response.content:
+            if hasattr(part, "text"):
+                answer += part.text
+            else:
+                answer += str(part)
+        return answer.strip()
+
+    return str(response.content).strip()
