@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from LLMProvider import get_llm
+from LLMProvider import get_llm, get_text
 from langchain_community.utilities import SQLDatabase
 from langchain_community.agent_toolkits import create_sql_agent
 load_dotenv()

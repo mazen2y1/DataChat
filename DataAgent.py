@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from LLMProvider import get_llm
+from LLMProvider import get_llm, get_text
 from langchain_experimental.agents import create_pandas_dataframe_agent
 
 load_dotenv()

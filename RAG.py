@@ -1,7 +1,7 @@
 import os
 import torch
 from dotenv import load_dotenv
-from LLMProvider import get_llm
+from LLMProvider import get_llm, get_text
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter

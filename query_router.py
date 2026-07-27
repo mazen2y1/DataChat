@@ -2,7 +2,7 @@ import os
 import json
 import logging
 from dotenv import load_dotenv
-from LLMProvider import get_llm
+from LLMProvider import get_llm, get_text
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
@@ -90,17 +90,7 @@ User Question:
 Output:
 """
     response = llm.invoke(prompt)
-
-    if isinstance(response.content, list):
-        raw_response = ""
-        for part in response.content:
-            if hasattr(part, "text"):
-                raw_response += part.text
-            else:
-                raw_response += str(part)
-        raw_response = raw_response.strip()
-    else:
-        raw_response = str(response.content).strip()
+    raw_response = get_text(response)
     raw_response = raw_response.replace(
         "```json",
         ""
@@ -189,14 +179,4 @@ Rules:
 Final Answer:
 """
     response = llm.invoke(prompt)
-
-    if isinstance(response.content, list):
-        answer = ""
-        for part in response.content:
-            if hasattr(part, "text"):
-                answer += part.text
-            else:
-                answer += str(part)
-        return answer.strip()
-
-    return str(response.content).strip()
+    return get_text(response)
