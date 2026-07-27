@@ -72,4 +72,4 @@ Question:
 Answer:
 """
     response = llm.invoke(prompt)
-    return response.content
+    return get_text(response)
