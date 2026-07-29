@@ -7,7 +7,7 @@
 | Field            | Value                                |
 | ---------------- | ------------------------------------ |
 | Full Name        | Mazen Mohamed                                     |
-| Project Name     | Data CHat                                     |
+| Project Name     | Data Chat                                     |
 | GitHub Username  | mazen2y1                                     |
 | Challenge Batch  | June–July 2026                       |
 | Training Program | Large Language Models (LLMs) Program |
@@ -43,15 +43,19 @@ Modern responsive Streamlit interface with custom styling
 # 🛠️ Technologies Used
 
 Python
+
 Python Dotenv
 
 Streamlit
 
 Google Gemini API
+
 LangChain
+
 Retrieval-Augmented Generation (RAG)
 
 Plotly
+
 Streamlit Charts
 
 Custom Analytics Engine
@@ -61,7 +65,7 @@ Custom Analytics Engine
 # ⚙️ Installation
 
 # Clone the repository
-git clone https://github.com/yourusername/DataChat.git
+git clone https://github.com/mazen2y1/DataChat.git
 
 # Navigate to the project
 cd DataChat
@@ -80,19 +84,24 @@ streamlit run app.py
 # 🚀 Usage
 
 1 \ Launch the Streamlit application.
+
 2 \ Upload one or more supported files:
  - CSV
  - Excel
  - PDF
  - TXT
  - SQLite Database
+
 3 \ Ask questions in natural language.
+
 4 \ View AI-generated answers.
+
 5 \ Explore the Business Analytics dashboard for:
  - Dataset overview
  - KPIs
  - Charts
  - AI insights
+ 
 6 \ Analyze multiple data sources from one interface.
 
 ---
