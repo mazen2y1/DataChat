@@ -15,9 +15,6 @@ env/
 .vscode/
 .idea/
 
-# Streamlit
-.streamlit/
-
 # Temporary files
 *.tmp
 
