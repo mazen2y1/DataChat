@@ -352,6 +352,7 @@ with tab_analytics:
             <p>Automatic KPIs • Smart Charts • AI Insights</p>
         </div>
         """, unsafe_allow_html=True)
+    st.title("Analyze The Selected Data")
     progress = st.progress(0)
     status = st.empty()
     if not uploaded_files:
