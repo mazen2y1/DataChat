@@ -24,9 +24,6 @@ class DatasetOverview:
 
             "duplicate_rows":
                 int(df.duplicated().sum()),
-
-            "memory_usage":
-                round(df.memory_usage(deep=True).sum() / 1024**2, 2),
             
             "column_summary": self.column_summary()
         }

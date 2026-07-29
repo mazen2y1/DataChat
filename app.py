@@ -12,17 +12,36 @@ from Analytics.SchemaAnalyzer import SchemaAnalyzer
 from LLMProvider import get_llm
 from Analytics.charts import ChartGenerator
 from Analytics.insights import AIInsights
+import streamlit.components.v1 as components
 st.set_page_config(
-        page_title="Data Chat",
-        page_icon="📊"
+         page_title="Data Chat",
+        page_icon="📊",
+        layout="wide"
     )
-
+with open(".streamlit/style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    
 tab_chat, tab_analytics = st.tabs([
-    "💬AI Data Chat",
-    "📊AI Business Analytics"
+    "💬 Data Chat",
+    "📊 AI Business Analytics"
 ])
 with tab_chat:
-    st.title("📊Data Chat")
+    st.markdown("""
+    <div style="
+    background: linear-gradient(90deg,#10A37F,#2563EB);
+    padding:30px;
+    border-radius:18px;
+    color:white;
+        text-align:center;
+                    margin-bottom:25px;
+                ">
+                    <h1 style="margin-bottom:8px;">🤖 Data Chat</h1>
+                    <p style="font-size:18px;">
+                        Chat with CSV, Excel, PDF & SQL using Artificial Intelligence
+                    </p>
+                </div>
+                """,unsafe_allow_html=True)
+    st.title("Start Chatting Your Data Now")
     st.write(
         "Upload your data and ask questions "
         "across multiple data sources."
@@ -320,9 +339,21 @@ with tab_chat:
         )
 
 with tab_analytics:
-
-    st.title("📊AI Business Analytics")
-
+    st.markdown("""
+        <div style="
+            background: linear-gradient(90deg,#3B82F6,#10A37F);
+            padding:25px;
+            border-radius:18px;
+            color:white;
+            text-align:center;
+            margin-bottom:20px;
+        ">
+            <h1>AI Business Analytics</h1>
+            <p>Automatic KPIs • Smart Charts • AI Insights</p>
+        </div>
+        """, unsafe_allow_html=True)
+    progress = st.progress(0)
+    status = st.empty()
     if not uploaded_files:
         st.warning("Upload your data")
 
@@ -332,6 +363,8 @@ with tab_analytics:
                 "Select Dataset",
                 dataframe_files
             )
+            status.success("Dataset Loaded")
+            progress.progress(10)
 
         if st.button("📊Analyze Dataset"):
             if not dataframes:
@@ -341,6 +374,8 @@ with tab_analytics:
             df = dataframes[selected_index]
             analyzer = DatasetOverview(df)
             overview = analyzer.analyze()
+            status.success("Analyzing")
+            progress.progress(25)
             st.subheader("Dataset Overview")
             col1, col2 = st.columns(2)
 
@@ -350,8 +385,8 @@ with tab_analytics:
                 st.metric("Missing", overview["missing_values"])
 
             with col2:
+
                 st.metric("Duplicates", overview["duplicate_rows"])
-                st.metric("Memory", f'{overview["memory_usage"]} MB')
                 st.metric("Numeric", overview["numeric_columns"])
                 st.subheader("Column Summary")
 
@@ -362,9 +397,13 @@ with tab_analytics:
             )
             llm = get_llm()
             schema = SchemaAnalyzer(llm).analyze(df)
-            st.write(schema)
+            status.success("Schema Detected")
+            progress.progress(45)
+            #st.write(schema)
             kpi_engine = KPIEngine(df, schema)
             kpis = kpi_engine.analyze()
+            status.success("✅ KPIs Generated")
+            progress.progress(60)
             if kpis:
                 st.subheader("Key Performance Indicators")
                 cols = st.columns(4)
@@ -372,14 +411,29 @@ with tab_analytics:
                     cols[i % 4].metric(name, value)
             else:
                 st.info("No KPIs detected for this dataset")
-
+            status.info("Building Dashboard...")
+            progress.progress(75)
             charts = ChartGenerator(df)
             dashboard = charts.generate_dashboard()
-            for title, fig in dashboard.items():
-                if fig is not None:
-                    st.subheader(title.replace("_", " ").title())
-                    st.plotly_chart(fig, use_container_width=True)
+            status.success("Dashboard is Ready")
+            progress.progress(85)
+            items = [(title, fig) for title, fig in dashboard.items() if fig is not None]
 
+            for i in range(0, len(items), 2):
+                col1, col2 = st.columns(2)
+
+                title1, fig1 = items[i]
+                with col1:
+                    st.subheader(title1.replace("_", " ").title())
+                    st.plotly_chart(fig1, use_container_width=True)
+
+                if i + 1 < len(items):
+                    title2, fig2 = items[i + 1]
+                    with col2:
+                        st.subheader(title2.replace("_", " ").title())
+                        st.plotly_chart(fig2, use_container_width=True)
+            status.info("AI is generating insights...")
+            progress.progress(94)
             insights = AIInsights(
                 df=df,
                 schema=schema,
@@ -407,8 +461,8 @@ with tab_analytics:
                 for item in insights["trends"]:
                     st.info(item)
             if insights["interesting"]:
-                st.markdown("### 💡 Interesting Facts")
+                st.markdown("Interesting Facts")
                 for item in insights["interesting"]:
                     st.info(item)
-
-            st.success("Analysis completed")
+            progress.progress(100)
+            status.success("Analysis Finished")
