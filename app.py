@@ -37,7 +37,7 @@ with tab_chat:
                 ">
                     <h1 style="margin-bottom:8px;">🤖 Data Chat</h1>
                     <p style="font-size:18px;">
-                        Chat with CSV, Excel, PDF & SQL using Artificial Intelligence
+                        Chat with CSV, Excel, PDF & SQL
                     </p>
                 </div>
                 """,unsafe_allow_html=True)
@@ -433,7 +433,7 @@ with tab_analytics:
                     with col2:
                         st.subheader(title2.replace("_", " ").title())
                         st.plotly_chart(fig2, use_container_width=True)
-            status.info("AI is generating insights...")
+            status.info("AI is generating insights")
             progress.progress(94)
             insights = AIInsights(
                 df=df,
