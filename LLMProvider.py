@@ -6,11 +6,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 def get_llm():
-    provider = os.getenv("LLM_PROVIDER", "openrouter").lower()
+    provider = os.getenv("PROVIDER", "gemini").lower()
 
     if provider == "gemini":
         return ChatGoogleGenerativeAI(
-            model=os.getenv("GEMINI_MODEL"),
+            model=os.getenv("GOOGLE_MODEL"),
             google_api_key=os.getenv("GOOGLE_API_KEY"),
             temperature=0,
         )

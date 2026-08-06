@@ -13,9 +13,7 @@ def create_data_agent(dataframe):
         dataframe,
         verbose=True,
         allow_dangerous_code=True,
-        agent_executor_kwargs={
-            "handle parsing_errors": True
-        }
+        handle_parsing_errors=True
     )
     return agent
 

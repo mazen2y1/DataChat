@@ -3,15 +3,12 @@ import pandas as pd
 from pypdf import PdfReader
 
 def load_csv(file):
-    file.seek(0)
     return pd.read_csv(file)
 
 def load_excel(file):
-    file.seek(0)
     return pd.read_excel(file)
 
 def load_pdf(file):
-    file.seek(0)
 
     pdf_bytes = file.getvalue()
     pdf_stream = io.BytesIO(pdf_bytes)
@@ -31,7 +28,6 @@ def load_pdf(file):
     return text
 
 def load_txt(file):
-    file.seek(0)
     return file.getvalue().decode(
         "utf-8",
         errors="ignore"
