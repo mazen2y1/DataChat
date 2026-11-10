@@ -1,0 +1,15 @@
+Proprietary License - All Rights Reserved
+
+Copyright (c) 2026 Mazen Mohamed (https://github.com/mazen2y1)
+All rights reserved.
+
+This repository and all of its contents (including source code, architecture, models, documentation, and assets) are the exclusive intellectual property of Mazen Mohamed, published strictly for portfolio viewing and demonstration purposes.
+
+No permission is granted to any person or entity to:
+1. Copy, download, clone, or fork this repository.
+2. Run, execute, modify, or use the code for any purpose (whether personal, academic, educational, or commercial).
+3. Distribute, publish, sublicense, or sell any part of this software.
+
+Any unauthorized use, reproduction, or distribution of this code is a direct violation of copyright laws and will be subject to legal action and DMCA takedown requests.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHOR (MAZEN MOHAMED) BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM ANY UNAUTHORIZED USE OF THIS SOFTWARE.
